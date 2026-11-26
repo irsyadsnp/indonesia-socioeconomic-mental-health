@@ -144,7 +144,7 @@ Their `RES07B3B` distribution is:
 | Missing | Missing | 9,909 |
 | **Total** | | **10,198** |
 
-The 4,976 people marked `MEMBER07=1` are not automatically 2007 KP nonrespondents: 4,689 have missing `RES07B3B`, seven are marked partial, and 280? No: the full cross-tabulation must be consulted before attributing a reason to this subgroup. The aggregate counts above show that IFLS5-only KP respondents are a mixture of membership histories and 2007 Book 3B tracking statuses. The reason for absence from the IFLS4 KP extract cannot be determined from these flags alone.
+The 4,976 people marked `MEMBER07=1` have the following `RES07B3B` statuses: 4,687 missing, 288 marked not completed, and one marked partially complete. The 5,222 people marked `MEMBER07=0` all have missing `RES07B3B`. The aggregate counts show that IFLS5-only KP respondents are a mixture of membership histories and 2007 Book 3B tracking statuses. The reason for absence from the IFLS4 KP extract cannot be determined from these flags alone.
 
 ## 7. What can and cannot be concluded
 
