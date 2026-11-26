@@ -2,7 +2,7 @@
 
 **Project:** Indonesia Socioeconomic Factors & Mental Health  
 **Stage:** 01.2 — Mental-health variable audit  
-**Status:** Documentary comparison completed; raw respondent-level validation pending  
+**Status:** Documentary comparison and structural raw-data audit completed; item-label reconciliation and scoring remain pending  
 **Review date:** 2026-11-26
 
 > **Correction and supersession notice:** This document's earlier version incorrectly stated that the IFLS4 item-level questionnaire/codebook comparison was pending and repeated an IFLS5 record count of 314,530. The user-provided documentation ZIP archives have now been inspected directly. The detailed, current findings are recorded in [IFLS4–IFLS5 Documentation Audit: Mental Health (Section KP)](ifls4_ifls5_kp_documentation_audit.md).
@@ -68,3 +68,14 @@ The measure should be described as depressive symptoms / a depressive-symptom in
 ## 6. Data governance
 
 Keep raw IFLS files locally under `data/raw/IFLS4/` and `data/raw/IFLS5/`. Do not commit raw IFLS data to this public repository. Commit only documentation, code, variable dictionaries, and disclosure-safe aggregate outputs consistent with RAND's data-use conditions.
+
+
+## 7. Raw-data validation update (2026-11-26)
+
+The supplied IFLS4 and IFLS5 B3B archives were inspected directly. Both contain `b3b_kp.dta`, each with exactly ten rows per PIDLINK and no duplicate PIDLINK–KPTYPE combinations. IFLS4 has 29,029 unique PIDLINKs and IFLS5 has 31,447. The files contain KPTYPE A–J as strings without embedded value labels.
+
+The IFLS4 KP01/KP02 cross-tab confirms 197,686 KP02 system-missing rows coincide with KP01 = 3 (No), consistent with skip logic. Ten records involve discordant special code 9 patterns and require review. The direct PIDLINK set overlap between these two KP files is 21,249 people; this is not yet a final longitudinal sample or attrition estimate.
+
+Full aggregate findings, variable storage types, distributions, and decisions are recorded in [IFLS4–IFLS5 KP Raw Data Validation](ifls4_ifls5_kp_raw_data_validation.md).
+
+The IFLS4 KPTYPE semantic discrepancy remains unresolved: the released file contains only A–J codes, while the IFLS4 codebook labels conflict with the English and Bahasa questionnaire wording. Do not finalize item-label mapping or scoring until official updates/data notes or RAND clarification resolve the discrepancy.
