@@ -2,7 +2,7 @@
 
 **Project:** Indonesia Socioeconomic Factors & Mental Health  
 **Stage:** 01.2 — Mental-health variable audit  
-**Status:** Partial audit. IFLS5 questionnaire reviewed; IFLS4 item-level questionnaire/codebook comparison remains pending.  
+**Status:** Partial audit. IFLS5 questionnaire and user-guide file layout reviewed; IFLS4 item-level questionnaire/codebook comparison remains pending.  
 **Review date:** 2026-11-26
 
 ## 1. Audit objective
@@ -40,7 +40,7 @@ The questionnaire lists the following ten statements:
 | I | I felt lonely | Negative symptom |
 | J | I could not get going | Negative symptom |
 
-**Important data-structure caveat:** The questionnaire prints KPTYPE and KP02 within the B3B_KP section. The final released variable names, whether observations are stored in a long or wide structure, the item-to-code mapping, and any associated type variables must be confirmed from the actual IFLS5 codebook and data files. Do not assume variable names such as kp02a–kp02j.
+**Data-structure finding:** The IFLS5 User's Guide lists B3B_KP as a question-level file with observation keys HHID14, PID14, and KPTYPE, and reports 314,530 records. This indicates a repeated-item/grid structure: one respondent can contribute multiple item records, identified by KPTYPE. KP02 is the questionnaire matrix identifier; it should not be mistaken for ten separate wide columns without checking the codebook. The actual response-variable name and KPTYPE category labels must still be confirmed from the released codebook and data. Do not assume variable names such as kp02a–kp02j.
 
 ## 3. IFLS4 status
 
@@ -97,7 +97,9 @@ This general guide is not a substitute for the KP-specific codebook. KP item res
 - [ ] Retrieve official IFLS5 Book IIIB codebook and identify exact KP variables and file.
 - [ ] Compare all ten item wordings and response categories across IFLS4 and IFLS5.
 - [ ] Verify CAPI routing, respondent age rules, proxy exclusions, and item-level nonresponse.
-- [ ] Confirm whether KP is stored as one record per respondent-item or as separate item columns.
+- [x] Establish the IFLS5 KP file's documented observation keys and repeated-item structure from the User's Guide.
+- [ ] Confirm the exact response-variable name and KPTYPE category labels from the released IFLS5 codebook.
+- [ ] Confirm the corresponding IFLS4 file layout and exact identifiers from its codebook.
 - [ ] Confirm unique respondent keys and cross-wave person linkage.
 - [ ] Verify scoring, reverse coding, missing-item rule, and any official derived score.
 - [ ] Only then create a reproducible scoring specification and test it against raw data.
@@ -107,10 +109,29 @@ This general guide is not a substitute for the KP-specific codebook. KP item res
 | Date | Decision | Rationale |
 |---|---|---|
 | 2026-11-26 | Treat IFLS5 KP02 as the documented 10-item short CES-D questionnaire | Confirmed in the official IFLS5 questionnaire and IFLS5 overview |
-| 2026-11-26 | Record KPTYPE and KP02 as questionnaire identifiers, not yet final dataset variable names | Released codebook and data layout still need direct inspection |
+| 2026-11-26 | Treat B3B_KP as a question-level repeated-item file in IFLS5, keyed by HHID14, PID14, and KPTYPE | IFLS5 User's Guide lists this observation level and 314,530 records |
 | 2026-11-26 | Keep IFLS4–IFLS5 harmonization provisional | Exact IFLS4 item and codebook comparison has not yet been completed |
 | 2026-11-26 | Do not calculate scores or apply cut-offs at this stage | Scoring and missing-response rules require verification |
 
+## 10. Additional data-layout finding (2026-11-26)
+
+The IFLS5 User's Guide appendix lists **B3B_KP** as:
+- Description: Book 3B CES-D
+- Observation level: Question
+- Unique observation identifiers: HHID14, PID14, KPTYPE
+- Number of records: 314,530
+
+This is a material clarification: IFLS5 KP is not documented as a simple one-row-per-person file. The file is a question-level grid. A valid analysis dataset will need a deliberate reshape or aggregation step after validating KPTYPE labels and the response variable. The individual identifier for cross-wave linkage is PIDLINK, not the wave-specific household/person ID pair.
+
+The IFLS5 User's Guide explicitly advises using PIDLINK to link individual-level information across waves, because HHID and PID can change when people move between households. Do not merge IFLS4 and IFLS5 mental-health files using HHID07/PID07 against HHID14/PID14.
+
+**Unresolved:** The precise IFLS5 response variable name and KPTYPE value-to-item mapping still require the codebook. The IFLS4 file and key structure must also be checked directly. The IFLS5 file layout must not be projected onto IFLS4 without evidence.
+
+## 11. Additional sources
+
+4. RAND, *User's Guide for the Indonesia Family Life Survey, Wave 5*, Appendix A (file structure and observation identifiers). https://www.rand.org/content/dam/rand/pubs/working_papers/WR1100/WR1143z2/RAND_WR1143z2.pdf
+5. Marvianto, R. D. (2023). *Psychometric properties of Mental Health Scale: An Item Response Theory Approach*. Gadjah Mada Journal of Psychology. https://doi.org/10.22146/gamajop.73878
+
 ---
 
-**Next task:** Complete IFLS4/IFLS5 codebook comparison and confirm the released KP data layout before proceeding to socioeconomic variable mapping.
+**Next task:** Obtain the IFLS4 and IFLS5 released codebooks, confirm response-variable and KPTYPE mappings, then construct a validated cross-wave item map before scoring. Complete IFLS4/IFLS5 codebook comparison and confirm the released KP data layout before proceeding to socioeconomic variable mapping.
