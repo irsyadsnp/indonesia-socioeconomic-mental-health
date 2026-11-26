@@ -99,7 +99,7 @@ The IFLS4 codebook's KPTYPE labels list:
 - J: talked less than usual
 
 This does not match the ten statements printed in the IFLS4 English questionnaire (Section 3), which do match the IFLS5 questionnaire. This conflict must remain open until verified against:
-1. IFLS4 Bahasa Indonesia Book 3B questionnaire;
+1. **IFLS4 Bahasa Indonesia Book 3B questionnaire — checked:** Section KP presents the same ten statements as the IFLS4 English questionnaire, in the same A–J sequence. This supports the questionnaire wording, but does not resolve why the IFLS4 codebook's KPTYPE labels differ.
 2. IFLS4 data updates and data notes;
 3. actual `hh07_b3b` data values and KPTYPE codes;
 4. any relevant release/version notes or clarification from RAND.
@@ -166,7 +166,7 @@ Before deriving a score, inspect raw records and verify item coding, respondent-
 
 ## 8. Next required files and actions
 
-1. Inspect the Bahasa Indonesia IFLS4 Book 3B questionnaire to check whether its Section KP wording resolves the codebook conflict.
+1. **Completed:** Inspect the Bahasa Indonesia IFLS4 Book 3B questionnaire. It confirms the same A–J item wording and sequence as the IFLS4 English questionnaire; the codebook label conflict remains unresolved.
 2. Inspect the IFLS4 and IFLS5 updates and data notes for corrections affecting B3B_KP.
 3. Inspect the actual Stata files `hh07_b3b` and `hh14_b3b`:
    - variable names and storage types;
